@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "./build.sh",
-    "install": "cd frontend && npm ci"
+    "postinstall": "cd frontend && npm ci"
   },
   "engines": {
     "node": ">=18.0.0"
