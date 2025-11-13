@@ -1,0 +1,1290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Промышленная аналитика Казахстана</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.light-mode {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    body.dark-mode {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+    .light-mode header {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid #E5E5E5;
+    }
+    .dark-mode header {
+      background-color: rgba(0, 0, 0, 0.95);
+      border-bottom: 1px solid #333333;
+    }
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    nav a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+    .light-mode nav a {
+      color: #000000;
+    }
+    .dark-mode nav a {
+      color: #FFFFFF;
+    }
+    nav a:hover {
+      opacity: 0.7;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .language-switcher {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+    .language-switcher button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+    .light-mode .language-switcher button {
+      color: #666666;
+    }
+    .dark-mode .language-switcher button {
+      color: #999999;
+    }
+    .language-switcher button.active {
+      font-weight: 700;
+    }
+    .light-mode .language-switcher button.active {
+      color: #000000;
+    }
+    .dark-mode .language-switcher button.active {
+      color: #FFFFFF;
+    }
+    .language-switcher button:hover {
+      opacity: 0.7;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.25rem;
+      transition: transform 0.2s ease;
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
+    .btn {
+      padding: 0.75rem 1.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid;
+    }
+    .light-mode .btn-outline {
+      color: #000000;
+      border-color: #000000;
+    }
+    .dark-mode .btn-outline {
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+    .btn-outline:hover {
+      opacity: 0.7;
+    }
+    .btn-primary {
+      border: none;
+    }
+    .light-mode .btn-primary {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    .dark-mode .btn-primary {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .light-mode .hero-background {
+      background: linear-gradient(135deg, #F5F5F5 0%, #E5E5E5 100%);
+    }
+    .dark-mode .hero-background {
+      background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    }
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.05;
+      background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, currentColor 35px, currentColor 36px),
+        repeating-linear-gradient(-45deg, transparent, transparent 35px, currentColor 35px, currentColor 36px);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+    .light-mode .hero p {
+      color: #666666;
+    }
+    .dark-mode .hero p {
+      color: #999999;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    /* About Section */
+    .about {
+      padding: 6rem 5%;
+    }
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .about h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 1.125rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .light-mode .about-text p {
+      color: #666666;
+    }
+    .dark-mode .about-text p {
+      color: #999999;
+    }
+    .about-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .icon-card {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-radius: 0.5rem;
+      transition: transform 0.2s ease;
+    }
+    .light-mode .icon-card {
+      background-color: #F5F5F5;
+    }
+    .dark-mode .icon-card {
+      background-color: #1a1a1a;
+    }
+    .icon-card:hover {
+      transform: translateY(-5px);
+    }
+    .icon-card svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+    }
+    .light-mode .icon-card svg {
+      stroke: #000000;
+    }
+    .dark-mode .icon-card svg {
+      stroke: #FFFFFF;
+    }
+    .icon-card p {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    /* Features Section */
+    .features {
+      padding: 6rem 5%;
+    }
+    .light-mode .features {
+      background-color: #F5F5F5;
+    }
+    .dark-mode .features {
+      background-color: #0a0a0a;
+    }
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .features h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .feature-card {
+      padding: 2.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .light-mode .feature-card {
+      background-color: #FFFFFF;
+      border-color: #E5E5E5;
+    }
+    .dark-mode .feature-card {
+      background-color: #000000;
+      border-color: #333333;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .light-mode .feature-card:hover {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    .dark-mode .feature-card:hover {
+      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+    }
+    .feature-card svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+    }
+    .light-mode .feature-card svg {
+      stroke: #000000;
+    }
+    .dark-mode .feature-card svg {
+      stroke: #FFFFFF;
+    }
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .feature-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .light-mode .feature-card p {
+      color: #666666;
+    }
+    .dark-mode .feature-card p {
+      color: #999999;
+    }
+    /* Pricing Section */
+    .pricing {
+      padding: 6rem 5%;
+    }
+    .pricing-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .pricing h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .pricing-card {
+      padding: 3rem 2.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid;
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+    .light-mode .pricing-card {
+      background-color: #FFFFFF;
+      border-color: #E5E5E5;
+    }
+    .dark-mode .pricing-card {
+      background-color: #0a0a0a;
+      border-color: #333333;
+    }
+    .pricing-card.featured {
+      transform: scale(1.05);
+    }
+    .light-mode .pricing-card.featured {
+      border-color: #000000;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+    .dark-mode .pricing-card.featured {
+      border-color: #FFFFFF;
+      box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15);
+    }
+    .pricing-card:hover {
+      transform: translateY(-5px);
+    }
+    .pricing-card.featured:hover {
+      transform: scale(1.05) translateY(-5px);
+    }
+    .pricing-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .pricing-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+    .pricing-card ul {
+      list-style: none;
+      margin-bottom: 2.5rem;
+    }
+    .pricing-card li {
+      padding: 0.75rem 0;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .pricing-card li:before {
+      content: "✓";
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .light-mode .pricing-card li {
+      color: #666666;
+    }
+    .dark-mode .pricing-card li {
+      color: #999999;
+    }
+    /* How To Section */
+    .how-to {
+      padding: 6rem 5%;
+    }
+    .light-mode .how-to {
+      background-color: #F5F5F5;
+    }
+    .dark-mode .how-to {
+      background-color: #0a0a0a;
+    }
+    .how-to-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .how-to h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+    .step-card {
+      text-align: center;
+      position: relative;
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 auto 1.5rem;
+      border: 3px solid;
+    }
+    .light-mode .step-number {
+      background-color: #FFFFFF;
+      border-color: #000000;
+      color: #000000;
+    }
+    .dark-mode .step-number {
+      background-color: #000000;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
+    }
+    .step-card svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.5rem;
+    }
+    .light-mode .step-card svg {
+      stroke: #000000;
+    }
+    .dark-mode .step-card svg {
+      stroke: #FFFFFF;
+    }
+    .step-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .step-card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .light-mode .step-card p {
+      color: #666666;
+    }
+    .dark-mode .step-card p {
+      color: #999999;
+    }
+    .how-to-cta {
+      text-align: center;
+    }
+    .how-to-cta .btn {
+      font-size: 1.125rem;
+      padding: 1rem 3rem;
+    }
+    /* Contacts Section */
+    .contacts {
+      padding: 6rem 5%;
+    }
+    .light-mode .contacts {
+      background-color: #F5F5F5;
+    }
+    .dark-mode .contacts {
+      background-color: #0a0a0a;
+    }
+    .contacts-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .contacts h2 {
+      font-size: 2.75rem;
+      font-weight: 800;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    .contacts-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .contact-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .contact-item svg {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+    .light-mode .contact-item svg {
+      stroke: #000000;
+    }
+    .dark-mode .contact-item svg {
+      stroke: #FFFFFF;
+    }
+    .contact-item h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .contact-item p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .light-mode .contact-item p {
+      color: #666666;
+    }
+    .dark-mode .contact-item p {
+      color: #999999;
+    }
+    .contact-form {
+      padding: 3rem;
+      border-radius: 0.5rem;
+      border: 2px solid;
+    }
+    .light-mode .contact-form {
+      background-color: #FFFFFF;
+      border-color: #E5E5E5;
+    }
+    .dark-mode .contact-form {
+      background-color: #000000;
+      border-color: #333333;
+    }
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.875rem 1rem;
+      border-radius: 0.375rem;
+      border: 2px solid;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: vertical;
+      transition: border-color 0.2s ease;
+    }
+    .light-mode .contact-form textarea {
+      background-color: #FFFFFF;
+      border-color: #E5E5E5;
+      color: #000000;
+    }
+    .dark-mode .contact-form textarea {
+      background-color: #000000;
+      border-color: #333333;
+      color: #FFFFFF;
+    }
+    .contact-form textarea:focus {
+      outline: none;
+    }
+    .light-mode .contact-form textarea:focus {
+      border-color: #000000;
+    }
+    .dark-mode .contact-form textarea:focus {
+      border-color: #FFFFFF;
+    }
+    /* Footer */
+    .footer {
+      padding: 4rem 5% 2rem;
+    }
+    .light-mode .footer {
+      background-color: #000000;
+      color: #FFFFFF;
+    }
+    .dark-mode .footer {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: 1.5fr 2fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid;
+    }
+    .light-mode .footer-content {
+      border-color: #333333;
+    }
+    .dark-mode .footer-content {
+      border-color: #E5E5E5;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .light-mode .footer-description {
+      color: #999999;
+    }
+    .dark-mode .footer-description {
+      color: #666666;
+    }
+    .footer-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .footer-column h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .footer-column a {
+      display: block;
+      font-size: 0.95rem;
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+      transition: opacity 0.2s ease;
+    }
+    .light-mode .footer-column a {
+      color: #999999;
+    }
+    .dark-mode .footer-column a {
+      color: #666666;
+    }
+    .footer-column a:hover {
+      opacity: 0.7;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-copyright {
+      font-size: 0.875rem;
+    }
+    .light-mode .footer-copyright {
+      color: #666666;
+    }
+    .dark-mode .footer-copyright {
+      color: #999999;
+    }
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s ease;
+    }
+    .footer-social a:hover {
+      opacity: 0.7;
+    }
+    .footer-social svg {
+      width: 24px;
+      height: 24px;
+    }
+    .light-mode .footer-social svg {
+      stroke: #FFFFFF;
+    }
+    .dark-mode .footer-social svg {
+      stroke: #000000;
+    }
+    /* Responsive */
+    @media (max-width: 1024px) {
+      nav {
+        display: none;
+      }
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .contacts-content {
+        grid-template-columns: 1fr;
+      }
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+      }
+      .about-icons {
+        grid-template-columns: 1fr;
+      }
+      .header-right {
+        gap: 0.75rem;
+      }
+      .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+      }
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-form {
+        padding: 2rem 1.5rem;
+      }
+      .footer-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('theme') || 'light-mode';
+    document.body.className = savedTheme;
+    themeToggle.textContent = savedTheme === 'dark-mode' ? '☀️' : '🌙';
+
+    themeToggle.addEventListener('click', () => {
+      const body = document.body;
+      const isDark = body.classList.contains('dark-mode');
+      
+      if (isDark) {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+        themeToggle.textContent = '🌙';
+        localStorage.setItem('theme', 'light-mode');
+      } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
+        themeToggle.textContent = '☀️';
+        localStorage.setItem('theme', 'dark-mode');
+      }
+    });
+
+    // Language switcher
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const savedLang = localStorage.getItem('language') || 'ru';
+    
+    langButtons.forEach(btn => {
+      if (btn.dataset.lang === savedLang) {
+        btn.classList.add('active');
+      }
+      btn.addEventListener('click', () => {
+        langButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        localStorage.setItem('language', btn.dataset.lang);
+        // Здесь можно добавить логику перевода текста
+      });
+    });
+
+    // Contact form
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const formData = {
+        name: document.getElementById('contact-name').value,
+        email: document.getElementById('contact-email-input').value,
+        phone: document.getElementById('contact-phone-input').value,
+        message: document.getElementById('contact-message').value
+      };
+
+      // Здесь можно добавить отправку на backend
+      showMessage('Сообщение отправлено! Мы свяжемся с вами в ближайшее время.', 'success');
+      contactForm.reset();
+    });
+
+    function showMessage(text, type) {
+      const messageDiv = document.createElement('div');
+      messageDiv.style.cssText = 'padding: 1rem; margin-top: 1rem; border-radius: 0.375rem; text-align: center; font-weight: 600;';
+      
+      if (document.body.classList.contains('light-mode')) {
+        messageDiv.style.backgroundColor = type === 'error' ? '#FFE5E5' : '#F5F5F5';
+        messageDiv.style.color = type === 'error' ? '#CC0000' : '#000000';
+      } else {
+        messageDiv.style.backgroundColor = type === 'error' ? '#330000' : '#1a1a1a';
+        messageDiv.style.color = type === 'error' ? '#FF6666' : '#FFFFFF';
+      }
+      
+      messageDiv.textContent = text;
+      
+      const form = contactForm;
+      const existingMessage = form.querySelector('div[style*="padding: 1rem"]');
+      if (existingMessage) {
+        existingMessage.remove();
+      }
+      
+      form.appendChild(messageDiv);
+      
+      setTimeout(() => {
+        messageDiv.remove();
+      }, 5000);
+    }
+
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+  </script>
+</head>
+<body class="light-mode">
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <span>🏭</span>
+      <span id="logo-text">Промышленная аналитика Казахстана</span>
+    </div>
+    <nav>
+      <a href="#about" id="nav-about">О платформе</a>
+      <a href="#features" id="nav-features">Функции</a>
+      <a href="#pricing" id="nav-pricing">Тарифы</a>
+      <a href="#contacts" id="nav-contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <div class="language-switcher">
+        <button class="lang-btn" data-lang="kk">Қазақша</button>
+        <span>|</span>
+        <button class="lang-btn active" data-lang="ru">Русский</button>
+        <span>|</span>
+        <button class="lang-btn" data-lang="en">English</button>
+      </div>
+      <button class="theme-toggle" id="theme-toggle">🌙</button>
+      <a href="login.html" class="btn btn-outline" id="btn-login">Войти</a>
+      <a href="apply.html" class="btn btn-primary" id="btn-apply-header">Подать заявку</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-background">
+      <div class="hero-pattern"></div>
+    </div>
+    <div class="hero-content">
+      <h1 id="hero-title">Единая платформа для цифровизации промышленности Казахстана</h1>
+      <p id="hero-subtitle">Собирайте данные, анализируйте производительность, предсказывайте отказы оборудования и оптимизируйте производство с помощью искусственного интеллекта</p>
+      <div class="hero-buttons">
+        <a href="apply.html" class="btn btn-primary" id="hero-btn-primary">Подать заявку</a>
+        <a href="#about" class="btn btn-outline" id="hero-btn-secondary">Узнать больше</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="about-container">
+      <h2 id="about-title">О платформе</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p id="about-paragraph-1">Национальная платформа промышленной аналитики Казахстана — это единая цифровая система для сбора, анализа и оптимизации производственных процессов на промышленных предприятиях.</p>
+          <p id="about-paragraph-2">Платформа позволяет предприятиям собирать данные с оборудования в реальном времени, анализировать производительность и эффективность, предсказывать отказы оборудования с помощью машинного обучения и оптимизировать производственные процессы.</p>
+          <p id="about-paragraph-3">Мы помогаем снижать простои, сокращать затраты и повышать эффективность производства на заводах Казахстана.</p>
+        </div>
+        <div class="about-icons">
+          <div class="icon-card">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 48L20 32L32 40L56 16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="20" cy="32" r="3" fill="currentColor" />
+              <circle cx="32" cy="40" r="3" fill="currentColor" />
+              <circle cx="56" cy="16" r="3" fill="currentColor" />
+            </svg>
+            <p>Аналитика</p>
+          </div>
+          <div class="icon-card">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="12" y="20" width="40" height="32" rx="2" stroke-width="3" />
+              <path d="M20 12V20M44 12V20" stroke-width="3" stroke-linecap="round" />
+              <circle cx="24" cy="32" r="2" fill="currentColor" />
+              <circle cx="32" cy="32" r="2" fill="currentColor" />
+              <circle cx="40" cy="32" r="2" fill="currentColor" />
+            </svg>
+            <p>Оборудование</p>
+          </div>
+          <div class="icon-card">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 8L40 24L56 28L44 40L48 56L32 48L16 56L20 40L8 28L24 24L32 8Z" stroke-width="3" stroke-linejoin="round" />
+            </svg>
+            <p>Оптимизация</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="features-container">
+      <h2 id="features-title">Возможности платформы</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="16" width="48" height="36" rx="2" stroke-width="3" />
+            <path d="M16 28H48M16 36H48M16 44H36" stroke-width="3" stroke-linecap="round" />
+            <circle cx="52" cy="12" r="4" stroke-width="2" />
+          </svg>
+          <h3 id="feature-1-title">Мониторинг в реальном времени</h3>
+          <p id="feature-1-text">Сбор данных с оборудования в реальном времени через IoT-датчики и интеграции с существующими системами</p>
+        </div>
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8 48L20 32L32 40L56 16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M48 16H56V24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="20" cy="32" r="3" fill="currentColor" />
+            <circle cx="32" cy="40" r="3" fill="currentColor" />
+          </svg>
+          <h3 id="feature-2-title">Предиктивная аналитика</h3>
+          <p id="feature-2-text">Предсказание отказов оборудования с точностью 85%+ с помощью машинного обучения</p>
+        </div>
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="16" height="40" stroke-width="3" />
+            <rect x="36" y="24" width="16" height="28" stroke-width="3" />
+            <path d="M20 20V44M44 32V44" stroke-width="2" />
+          </svg>
+          <h3 id="feature-3-title">Расчет KPI и OEE</h3>
+          <p id="feature-3-text">Автоматический расчет показателей эффективности оборудования (OEE, доступность, производительность)</p>
+        </div>
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 8L36 24L52 28L40 40L44 56L32 48L20 56L24 40L12 28L28 24L32 8Z" stroke-width="3" stroke-linejoin="round" />
+            <circle cx="32" cy="32" r="6" stroke-width="2" />
+          </svg>
+          <h3 id="feature-4-title">Выявление аномалий</h3>
+          <p id="feature-4-text">Автоматическое обнаружение отклонений в работе оборудования и уведомления в реальном времени</p>
+        </div>
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="40" r="16" stroke-width="3" />
+            <path d="M32 24V16M32 16L28 20M32 16L36 20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M24 32L32 40L40 32" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <h3 id="feature-5-title">Рекомендации по оптимизации</h3>
+          <p id="feature-5-text">Персонализированные рекомендации по улучшению процессов и снижению затрат</p>
+        </div>
+        <div class="feature-card">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="8" width="32" height="48" rx="2" stroke-width="3" />
+            <path d="M24 20H40M24 28H40M24 36H36" stroke-width="3" stroke-linecap="round" />
+            <rect x="24" y="44" width="16" height="8" rx="1" stroke-width="2" />
+          </svg>
+          <h3 id="feature-6-title">Отчеты и аналитика</h3>
+          <p id="feature-6-text">Автоматическая генерация отчетов и визуализация данных на дашбордах</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-container">
+      <h2 id="pricing-title">Тарифные планы</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3 id="plan-1-name">БАЗОВЫЙ</h3>
+          <div class="price" id="plan-1-price">150,000 тг/месяц</div>
+          <ul>
+            <li>До 10 единиц оборудования</li>
+            <li>Базовые дашборды</li>
+            <li>Экспорт отчётов</li>
+            <li>Мобильное приложение</li>
+          </ul>
+          <a href="apply.html" class="btn btn-outline">Выбрать план</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3 id="plan-2-name">АНАЛИТИЧЕСКИЙ</h3>
+          <div class="price" id="plan-2-price">450,000 тг/месяц</div>
+          <ul>
+            <li>До 50 единиц оборудования</li>
+            <li>ИИ-анализ и предиктивная аналитика</li>
+            <li>Прогнозирование отказов</li>
+            <li>Рекомендации по оптимизации</li>
+            <li>API для интеграций</li>
+          </ul>
+          <a href="apply.html" class="btn btn-primary">Выбрать план</a>
+        </div>
+        <div class="pricing-card">
+          <h3 id="plan-3-name">КОРПОРАТИВНЫЙ</h3>
+          <div class="price" id="plan-3-price">от 1,200,000 тг/месяц</div>
+          <ul>
+            <li>Неограниченное количество оборудования</li>
+            <li>Мультизаводская аналитика</li>
+            <li>Интеграция с ERP/MES</li>
+            <li>Белый label</li>
+            <li>Выделенный менеджер</li>
+            <li>Техподдержка 24/7</li>
+          </ul>
+          <a href="apply.html" class="btn btn-outline">Связаться с нами</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How To Section -->
+  <section class="how-to">
+    <div class="how-to-container">
+      <h2 id="how-to-title">Как начать работу</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="16" width="40" height="40" rx="2" stroke-width="3" />
+            <path d="M20 28H44M20 36H44M20 44H36" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          <h3 id="step-1-title">Подайте заявку</h3>
+          <p id="step-1-text">Заполните форму на сайте или свяжитесь с нами по телефону/email</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="24" r="8" stroke-width="3" />
+            <path d="M16 52C16 42 22 36 32 36C42 36 48 42 48 52" stroke-width="3" stroke-linecap="round" />
+            <path d="M44 20L52 12M52 12H44M52 12V20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <h3 id="step-2-title">Консультация</h3>
+          <p id="step-2-text">Наш специалист проведет консультацию и поможет выбрать оптимальный тариф</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="20" stroke-width="3" />
+            <path d="M32 20V32L40 40" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M20 12L24 8M44 12L40 8" stroke-width="3" stroke-linecap="round" />
+          </svg>
+          <h3 id="step-3-title">Настройка</h3>
+          <p id="step-3-text">Мы настроим платформу под ваше предприятие и подключим оборудование</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 32L24 44L52 16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            <circle cx="24" cy="44" r="4" stroke-width="2" />
+          </svg>
+          <h3 id="step-4-title">Запуск</h3>
+          <p id="step-4-text">Начните использовать платформу и получать аналитику в реальном времени</p>
+        </div>
+      </div>
+      <div class="how-to-cta">
+        <a href="apply.html" class="btn btn-primary" id="how-to-cta-btn">Подать заявку сейчас</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts Section -->
+  <section class="contacts" id="contacts">
+    <div class="contacts-container">
+      <h2 id="contacts-title">Свяжитесь с нами</h2>
+      <div class="contacts-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M52 44C52 48 48 52 44 52C28 52 12 36 12 20C12 16 16 12 20 12C22 12 24 13 24 15L28 24C28 26 27 27 26 28L22 32C24 36 28 40 32 42L36 38C37 37 38 36 40 36L49 40C51 40 52 42 52 44Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div>
+              <h3>Телефон</h3>
+              <p id="contact-phone">+7 (705) 669-76-77</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="16" width="48" height="32" rx="2" stroke-width="3" />
+              <path d="M8 16L32 36L56 16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div>
+              <h3>Email</h3>
+              <p id="contact-email">Krazher220@icloud.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 56C32 56 48 44 48 28C48 19 41 12 32 12C23 12 16 19 16 28C16 44 32 56 32 56Z" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="32" cy="28" r="6" stroke-width="3" />
+            </svg>
+            <div>
+              <h3>Адрес</h3>
+              <p id="contact-address">г. Костанай</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="20" stroke-width="3" />
+              <path d="M32 20V32L40 40" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <div>
+              <h3>Время работы</h3>
+              <p id="contact-hours">Пн-Пт, 14:00-18:00</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="contact-name">Имя</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-email-input">Email</label>
+            <input type="email" id="contact-email-input" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone-input">Телефон</label>
+            <input type="tel" id="contact-phone-input" name="phone" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Сообщение</label>
+            <textarea id="contact-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="contact-submit-btn">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span>🏭</span>
+            <span id="footer-logo-text">Промышленная аналитика Казахстана</span>
+          </div>
+          <p id="footer-description">Единая платформа для цифровизации промышленности</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Платформа</h4>
+            <a href="#about">О платформе</a>
+            <a href="#features">Функции</a>
+            <a href="#pricing">Тарифы</a>
+            <a href="#how-to">Как начать</a>
+          </div>
+          <div class="footer-column">
+            <h4>Ресурсы</h4>
+            <a href="#docs">Документация</a>
+            <a href="#api">API</a>
+            <a href="#support">Поддержка</a>
+            <a href="#blog">Блог</a>
+          </div>
+          <div class="footer-column">
+            <h4>Контакты</h4>
+            <a href="#contacts">Связаться с нами</a>
+            <a href="tel:+77056697677">+7 (705) 669-76-77</a>
+            <a href="mailto:Krazher220@icloud.com">Krazher220@icloud.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p id="footer-copyright">© 2025 Промышленная аналитика Казахстана. Все права защищены.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.95718 14.8821 3.28445C14.0247 3.61173 13.2884 4.1944 12.773 4.95372C12.2575 5.71303 11.9877 6.61234 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39545C5.36074 6.60508 4.01032 5.43864 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.0989 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2H15C13.6739 2 12.4021 2.52678 11.4645 3.46447C10.5268 4.40215 10 5.67392 10 7V10H7V14H10V22H14V14H17L18 10H14V7C14 6.73478 14.1054 6.48043 14.2929 6.29289C14.4804 6.10536 14.7348 6 15 6H18V2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+
