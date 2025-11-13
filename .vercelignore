@@ -1,0 +1,16 @@
+backend/
+*.log
+*.pid
+.env
+.env.local
+node_modules/
+.git/
+*.md
+!README.md
+docker-compose.yml
+*.sh
+__pycache__/
+*.pyc
+venv/
+.python-version
+

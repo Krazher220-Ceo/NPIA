@@ -1,0 +1,14 @@
+{
+  "name": "npi-platform",
+  "version": "1.0.0",
+  "description": "Национальная платформа промышленной аналитики Казахстана",
+  "private": true,
+  "scripts": {
+    "build": "./build.sh",
+    "install": "cd frontend && npm ci"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
