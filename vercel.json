@@ -1,24 +1,34 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "frontend/dist",
-  "installCommand": "npm install",
-  "framework": null,
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/login.html",
-      "destination": "/login.html"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
     },
     {
-      "source": "/apply.html",
-      "destination": "/apply.html"
+      "src": "/login.html",
+      "dest": "/login.html"
     },
     {
-      "source": "/index_landing.html",
-      "destination": "/index_landing.html"
+      "src": "/apply.html",
+      "dest": "/apply.html"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "/index_landing.html",
+      "dest": "/index_landing.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
